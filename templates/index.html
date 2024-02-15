@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="../static/index.css">
+        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+    
+    <body>
+
+        <div class="heading">
+          <img src="../static/note-logo.png" alt="pic" width="25px" height="25px">
+          <h1 style="display: inline;">TODO APP</h1>
+  </div>
+  <div class="container">
+             
+    <form class="myForm" action="{{ url_for('create_task') }}" method="POST">
+        <div class="inputBox">
+            <input type="text" name="task" placeholder="Add new task" required>
+            <!-- <input type="submit" value="Create"> -->
+            <button type="submit" ><i class="fa fa-plus-square-o" aria-hidden="true"></i></button>
+        </div>
+    </form>
+    <ul id="taskList">
+        {% for task in tasks %}
+    <li>  
+            {{ task }}
+            <!-- lop.index is used to get the index of the current task within
+            the loop -->
+            <!-- Each task is going to be displayed with a delete button 
+              represented by the "x" symbol. -->
+            <form action="{{ url_for('delete_task', task_id=loop.index0) }}" method="post" style="display: inline;">
+              <button type="submit" style="background-color: transparent; border: 10px; cursor: pointer; color: #0056b3; margin-left: 250px; margin-bottom: 25px;"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+          </form>
+          
+           <form action="{{ url_for('update_task', task_id=loop.index0) }}" method="POST" >
+    <input type="text" name="updated_task" placeholder="Update " >
+    <button type="submit" style="background-color: transparent; border: 10px; cursor: pointer; color: #0056b3;  "><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+</form>
+               
+
+
+
+             
+        </li>
+        {% endfor %}
+    </ul>  
+    
+
+ 
+</div>
+
+
+
+
+
+      
+     
+            
+             
+            
+  
+
+       
+
+
+        
+
+
+
+        
+        <section>
+
+        </section>
+        
+    </body>
+</html>
